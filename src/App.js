@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 import { usePosts, PostProvider } from "./PostContext";
 import Test from "./Test";
+import { memo } from "react";
 
 function createRandomPost() {
   return {
@@ -78,14 +79,15 @@ function Results() {
   return <p>🚀 {posts.length} atomic posts found</p>;
 }
 
-function Main() {
+//We can memoize all these if the app is too slow. This is not the case here still doing it for an example
+const Main = memo(function Main() {
   return (
     <main>
       <FormAddPost />
       <Posts />
     </main>
   );
-}
+});
 
 function Posts() {
   return (
